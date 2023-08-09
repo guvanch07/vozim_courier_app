@@ -11,7 +11,14 @@ import SwiftUI
 struct tracker_geoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+           
+            if UserDefaults.standard.string(forKey: "token") != nil{
+                HomeScreen()
+            }else{
+                LoginScreen()
+            }
+            
+            //ContentView()
         }
     }
 }

@@ -1,0 +1,41 @@
+{
+  "pins" : [
+    {
+      "identity" : "input-mask-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/RedMadRobot/input-mask-ios.git",
+      "state" : {
+        "revision" : "b492f115cc8b3aeb1b6395b4c4157d6bba1fceab",
+        "version" : "7.3.2"
+      }
+    },
+    {
+      "identity" : "iphonenumberfield",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MojtabaHs/iPhoneNumberField.git",
+      "state" : {
+        "revision" : "5298972c899ba3555a77549bebeace2e16bc927d",
+        "version" : "0.10.1"
+      }
+    },
+    {
+      "identity" : "phonenumberkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/marmelroy/PhoneNumberKit",
+      "state" : {
+        "revision" : "b6c141f4a97dde7cd3ea335a5d6d679faa7675f6",
+        "version" : "3.6.7"
+      }
+    },
+    {
+      "identity" : "swiftuiflow",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ciaranrobrien/SwiftUIFlow.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "b300d3c0110116f3520066dfb8dcf3006cf593c3"
+      }
+    }
+  ],
+  "version" : 2
+}
