@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct DashboardScreen: View {
-    @State private var favoriteColor = "Список"
+    @State private var tab = "Список"
     var colors = ["Список", "Карта","Выполнено"]
     
     var body: some View {
         NavigationStack {
-            DeliveryListWidget()
+            TabItem(tab:tab)
             .navigationTitle("Маршрут")
             .safeAreaInset(edge: .top) {
-                Picker("Where", selection: $favoriteColor) {
+                Picker("Where", selection: $tab) {
                     ForEach(colors, id: \.self) {
                         Text($0)
                     }
@@ -39,5 +39,21 @@ struct DashboardScreen: View {
 struct DashboardScreen_Previews: PreviewProvider {
     static var previews: some View {
         DashboardScreen()
+    }
+}
+
+struct TabItem: View {
+    let tab: String
+    var body: some View {
+        switch tab {
+        case "Список":
+            DeliveryListWidget()
+        case "Карта":
+            Text("Map")
+        case "Выполнено":
+            Text("Done")
+        default:
+            DeliveryListWidget()
+        }
     }
 }

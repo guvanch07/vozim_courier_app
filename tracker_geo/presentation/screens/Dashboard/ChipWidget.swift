@@ -9,13 +9,12 @@ import SwiftUI
 
 struct ChipWidget: View {
     var titleKey: String
-    var isSelected: Bool
-    var count: Int
+    var count: Int?
     var body: some View {
         
         HStack() {
-            if isSelected {
-                Image(systemName: "\(count).circle.fill")
+            if count != nil {
+                Image(systemName: "\(count!).circle.fill")
                     .resizable()
                     .font(.title2)
                     .frame(width: 14.0, height: 14.0)

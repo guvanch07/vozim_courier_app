@@ -11,9 +11,13 @@ struct DeliveryItem: View {
     let data: Receipt
     let isFirst: Bool
     
-        let rows = [
-            GridItem(.fixed(32)),
-            GridItem(.fixed(32))]
+    let row2 = [
+        GridItem(.fixed(30)),
+        GridItem(.fixed(30))]
+
+let row1 = [
+    GridItem(.fixed(30))
+]
     
     var body: some View {
         VStack(
@@ -30,18 +34,18 @@ struct DeliveryItem: View {
                 alignment: .top
             ){
                 Image(systemName: "box.truck")
-                VStack{
-                    Text(data.goodName)
+                VStack(
+                    alignment: .leading
+                ){
+                   
+                    Text(data.goodName.trimmingCharacters(in: .whitespacesAndNewlines))
                         .font(.system(size: 14))
                         .foregroundStyle(.gray)
-                    HStack{
-                        List{
-                            ForEach (data.sizes){ i in
-                                Text("\(i.h)")
-                                    .font(.system(size: 14))
-                                    .foregroundStyle(.gray)
-                            }
-                        }
+                        
+                    ForEach(data.sizes) { size in
+                        Text("\(size.w)x\(size.h)X\(size.l) см, \(size.kg) кг")
+                            .font(.system(size: 14))
+                            .foregroundStyle(.gray)
                     }
                 }
             }
@@ -63,16 +67,29 @@ struct DeliveryItem: View {
                     )
             }
             }else{
-                ScrollView(.horizontal) {
-                            LazyHGrid(rows: rows, alignment: .center) {
-                                ForEach(listChips, id: \.self) { item in
-                                    ChipWidget(titleKey: item, isSelected: item == "Грузчики",count: 2)
-                                   
-                                }
-                            }
-                        }
+                LazyHGrid(rows: data.services.driverHelp.enabled && data.fragile ?
+                          row2
+                          : data.services.loader.enabled &&
+                          (!data.deliveryTime.from.isEmpty ||
+                           !data.deliveryTime.to.isEmpty)
+                          ? row1
+                          :[],
+                          alignment: .center) {
+                    if !data.deliveryTime.from.isEmpty ||
+                        !data.deliveryTime.to.isEmpty{
+                        ChipWidget(titleKey: "c \(data.deliveryTime.from) до \(data.deliveryTime.to)")
+                    }
+                    if data.services.loader.enabled {
+                        ChipWidget(titleKey: "Грузчики",count: data.services.loader.count)
+                    }
+                    if data.services.driverHelp.enabled {
+                        ChipWidget(titleKey: "Помощь водителя")
+                    }
+                    if data.fragile {
+                        ChipWidget(titleKey: "Хрупкое")
+                    }
+                }
             }
-            
         }
     }
 }

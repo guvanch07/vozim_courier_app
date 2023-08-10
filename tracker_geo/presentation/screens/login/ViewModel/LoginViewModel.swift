@@ -21,18 +21,25 @@ final class LoginViewModel: ObservableObject{
 
     func login(phone:String,password:String){
         Task{
-            isRefreshing = true
-            defer{isRefreshing = false}
+            DispatchQueue.main.async{
+                self.isRefreshing = true
+            }
             do {
                 let data = LoginRequest(phone: phone, password: password)
                 let usecase = try await loginUseCase.execute(loginRequest: data)
                 UserDefaults.standard.set(usecase.token, forKey: "token")
-                
-                self.loginData = usecase
+                DispatchQueue.main.async{
+                    self.loginData = usecase
+                    self.isRefreshing = false
+                }
             }catch{
                 if let userErr = error as? UserError{
-                    self.hasError = true
-                    self.error = userErr
+                    DispatchQueue.main.async{
+                        self.hasError = true
+                        self.error = userErr
+                        self.isRefreshing = false
+                    }
+                    
                 }
             }
         }
