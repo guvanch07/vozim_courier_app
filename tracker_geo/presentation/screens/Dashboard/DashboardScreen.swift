@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct DashboardScreen: View {
     @State private var tab = "Список"
@@ -49,11 +50,35 @@ struct TabItem: View {
         case "Список":
             DeliveryListWidget()
         case "Карта":
-            Text("Map")
+            MapTab()
         case "Выполнено":
             Text("Done")
         default:
             DeliveryListWidget()
         }
+    }
+}
+
+struct MapTab: View{
+    @StateObject var mapData = MapViewModel()
+       @State var locationManager = CLLocationManager()
+    var body: some View{
+        MapView()
+            .environmentObject(mapData)
+            .ignoresSafeArea(.all,edges: .all)
+            .onAppear(perform: {
+                locationManager.delegate = mapData
+                locationManager.requestWhenInUseAuthorization()
+            })
+            .alert(isPresented: $mapData.permissionDenided,
+                   content: {
+                Alert(title: Text("Permission Denided"),
+                      message: Text("Please Enable Permission In App Settings"),
+                      dismissButton: .default(Text("Goto Settings"),
+                                              action: {
+                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                }))
+                
+            })
     }
 }
