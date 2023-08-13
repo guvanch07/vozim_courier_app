@@ -10,16 +10,18 @@ import SwiftUI
 struct InfoDeliverWidget: View {
     let receipt: Receipt
     var body: some View {
-        List() {
+        List {
             AppListTile(
                 image: "barcode.viewfinder",
-                title: receipt.pointType != 3 ? "\(receipt.series)-\(receipt.number)" : "",
+                title: !receipt.isStock ? "\(receipt.series)-\(receipt.number)" : "",
                 view: AnyView(
                     ChipWidget(
                         titleKey: pointLabel(type: receipt.pointType),
-                        color: receipt.pointType == 2
-                        ? Color(hex: 0xFF69D9E2)
-                        : Color(hex: 0xFFFFA45B)))
+                        color: receipt.isDelivery
+                        ? appAccent2Color
+                        : appAccentColor
+                    )
+                )
             )
             
             Section(header: Text("Адрес")) {
@@ -39,20 +41,25 @@ struct InfoDeliverWidget: View {
             }
             .headerProminence(.increased)
             
-            Section(header: Text("Отправитель")) {
-                AppListTile(image: "building.2", title: receipt.client.isCompany ? "Юридическое лицо"
+            Section(header: Text(receipt.onlyDelivery ? "Получатель" : "Отправитель")) {
+                AppListTile(
+                    image: "building.2",
+                    title: receipt.client.isCompany
+                            ? "Юридическое лицо"
                             : "Физическое лицо",
-                            subtitle: receipt.sender.companyName,
-                            replace: true
-                            
+                    subtitle: receipt.sender.companyName,
+                    replace: true
                 )
-                AppListTile(image: "person", title: receipt.sender.name)
-                AppListTile(image: "text.bubble", title: receipt.sender.additional)
+                AppListTile(image: "person", title: receipt.onlyDelivery ? receipt.receiver.name : receipt.sender.name)
+                AppListTile(image: "text.bubble", title: receipt.onlyDelivery ? receipt.receiver.additional : receipt.sender.additional)
                 if receipt.payment > 0{
                     AppListTile(image: "dollarsign", title: "\(receipt.payment) \(receipt.currency)")
                 }
                 Button{
-                    print("call")
+                    let telephone = "tel://"
+                    let formattedString = telephone + (receipt.onlyDelivery ? receipt.receiver.phone : receipt.sender.phone)
+                        guard let url = URL(string: formattedString) else { return }
+                        UIApplication.shared.open(url)
                 }label: {
                     HStack{
                         Image(systemName: "phone")
@@ -63,31 +70,35 @@ struct InfoDeliverWidget: View {
                 }.padding(.horizontal, 20)
                     .padding(.vertical, 10)
                     .foregroundColor(.white)
-                    .background(.green)
+                    .background(appSuccessColor)
                     .cornerRadius(24)
             }
-            
-            .headerProminence(.increased)
-            Section(header: Text("Header")) {
-                Text("Row")
-            }
-            .headerProminence(.increased)
-            Section(header: Text("Header")) {
-                Text("Row")
-                Text("Row")
-                Text("Row")
-                Text("Row")
-            }
-            .headerProminence(.increased)
-            Section(header: Text("Header")) {
-                Text("Row")
-            }
-            .headerProminence(.increased)
-            Section(header: Text("Header")) {
-                Text("Row")
-            }
             .headerProminence(.increased)
             
+            if receipt.pointType != 3 {
+                Section(header: Text("Отправление / груз")) {
+                    AppListTile(
+                        image: "box.truck",
+                        title: receipt.goodName,
+                        subtitle: "\(receipt.sizes[0].l)x\(receipt.sizes[0].w)x\(receipt.sizes[0].h), \(receipt.goodCount),единиц \(receipt.sizes[0].kg) кг"
+                    )
+                    AppListTile(image: "text.bubble", title: receipt.additional)
+                    InfoChips(data: receipt)
+                }.headerProminence(.increased)
+            }
+           
+            
+            Section(header: Text("Заказчик")) {
+                AppListTile(
+                    image: receipt.client.isCompany ? "building.2" : "person",
+                    title: receipt.client.isCompany
+                    ? "Юридическое лицо"
+                    : "Физическое лицо",
+                    subtitle: receipt.client.name,
+                    replace: true
+                )
+            }
+            .headerProminence(.increased)
         }
     }
     func pointLabel(type:Int)-> String{

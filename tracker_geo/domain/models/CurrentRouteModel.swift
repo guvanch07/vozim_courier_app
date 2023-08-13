@@ -97,6 +97,9 @@ struct Receipt: Decodable {
     var isPickUp: Bool {
         get{return pointType == 1}
     }
+    var onlyDelivery: Bool {
+        get{return pointType != 3 && pointType != 1}
+    }
 }
 
 // MARK: - Address

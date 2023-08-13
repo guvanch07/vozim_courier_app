@@ -10,6 +10,8 @@
 		C50A008D2A88456A004A23D4 /* InfoDeliverWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50A008C2A88456A004A23D4 /* InfoDeliverWidget.swift */; };
 		C50A008F2A884970004A23D4 /* MainDetailWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50A008E2A884970004A23D4 /* MainDetailWidget.swift */; };
 		C50A00922A885D5F004A23D4 /* AppListTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50A00912A885D5F004A23D4 /* AppListTile.swift */; };
+		C50A00942A895159004A23D4 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50A00932A895159004A23D4 /* LoginButton.swift */; };
+		C50A00962A896920004A23D4 /* InfoChips.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50A00952A896920004A23D4 /* InfoChips.swift */; };
 		C5226C232A6D772600D63CA9 /* api_impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5226C222A6D772600D63CA9 /* api_impl.swift */; };
 		C5226C252A6D79A400D63CA9 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5226C242A6D79A400D63CA9 /* PostModel.swift */; };
 		C5226C272A6D79F100D63CA9 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5226C262A6D79F100D63CA9 /* LoginModel.swift */; };
@@ -68,6 +70,8 @@
 		C50A008C2A88456A004A23D4 /* InfoDeliverWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDeliverWidget.swift; sourceTree = "<group>"; };
 		C50A008E2A884970004A23D4 /* MainDetailWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDetailWidget.swift; sourceTree = "<group>"; };
 		C50A00912A885D5F004A23D4 /* AppListTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppListTile.swift; sourceTree = "<group>"; };
+		C50A00932A895159004A23D4 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		C50A00952A896920004A23D4 /* InfoChips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoChips.swift; sourceTree = "<group>"; };
 		C5226C222A6D772600D63CA9 /* api_impl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = api_impl.swift; sourceTree = "<group>"; };
 		C5226C242A6D79A400D63CA9 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		C5226C262A6D79F100D63CA9 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
@@ -306,7 +310,9 @@
 		C54AE7732A85A45E0021F7E5 /* widgets */ = {
 			isa = PBXGroup;
 			children = (
+				C55023F02A7DE8B8004422EC /* ChipWidget.swift */,
 				C54AE7742A85A4780021F7E5 /* MapView.swift */,
+				C50A00952A896920004A23D4 /* InfoChips.swift */,
 			);
 			path = widgets;
 			sourceTree = "<group>";
@@ -356,7 +362,6 @@
 				C56A37122A7D3BE100D3511E /* DashboardScreen.swift */,
 				C56A37142A7D445A00D3511E /* DeliveryListWidget.swift */,
 				C56A37162A7D447100D3511E /* DeliveryItem.swift */,
-				C55023F02A7DE8B8004422EC /* ChipWidget.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -383,6 +388,7 @@
 			children = (
 				C55023FF2A7FD7C8004422EC /* ViewModel */,
 				C5C7353A2A79617900A6EBCF /* LoginScreen.swift */,
+				C50A00932A895159004A23D4 /* LoginButton.swift */,
 			);
 			path = login;
 			sourceTree = "<group>";
@@ -540,6 +546,7 @@
 				C5226C252A6D79A400D63CA9 /* PostModel.swift in Sources */,
 				C5226C2A2A6D7AC300D63CA9 /* error_handler.swift in Sources */,
 				C55024012A7FD7E8004422EC /* LoginViewModel.swift in Sources */,
+				C50A00962A896920004A23D4 /* InfoChips.swift in Sources */,
 				C56A37132A7D3BE100D3511E /* DashboardScreen.swift in Sources */,
 				C54AE7752A85A4780021F7E5 /* MapView.swift in Sources */,
 				C5226C2D2A6D7FB400D63CA9 /* repository.swift in Sources */,
@@ -557,6 +564,7 @@
 				C54AE7792A85A5150021F7E5 /* Place.swift in Sources */,
 				C5B96A3D2A81AB70004C4C25 /* Const.swift in Sources */,
 				C5B96A3F2A81B698004C4C25 /* CurrentRouteModel.swift in Sources */,
+				C50A00942A895159004A23D4 /* LoginButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

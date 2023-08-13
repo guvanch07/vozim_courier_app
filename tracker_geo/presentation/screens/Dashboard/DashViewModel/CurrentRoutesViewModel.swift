@@ -16,6 +16,7 @@ final class CurrentRoutesViewModel: ObservableObject{
         @Published private(set) var isRefreshing = false
         @Published var hasError = false
         @Published  var error: UserError?
+        @Published var isLoggedIn = false
     
     private var currentRoutesUseCase = CurrentRoutesUseCase(
         repository: RepositoryImpl(apiService: ApiService())
@@ -31,7 +32,9 @@ final class CurrentRoutesViewModel: ObservableObject{
                     //self.currentRoutes = usecase
                     self.listReceipts = usecase.receipts
                     self.isRefreshing = false
+                    self.isLoggedIn = true
                 }
+                
             }catch{
                 DispatchQueue.main.async{
                     if let userErr = error as? UserError{

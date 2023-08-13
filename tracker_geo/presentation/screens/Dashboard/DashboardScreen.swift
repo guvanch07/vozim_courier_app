@@ -64,6 +64,7 @@ struct MapTab: View{
        @State var locationManager = CLLocationManager()
     var body: some View{
         MapView()
+        
             .environmentObject(mapData)
             .ignoresSafeArea(.all,edges: .all)
             .onAppear(perform: {

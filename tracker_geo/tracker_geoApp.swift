@@ -9,17 +9,14 @@ import SwiftUI
 
 @main
 struct tracker_geoApp: App {
+    
+    @StateObject var userStateViewModel = LoginViewModel()
+    
     var body: some Scene {
         WindowGroup {
-           
-            if UserDefaults.standard.string(forKey: "token") != nil{
-                HomeScreen()
-            }else{
-                LoginScreen()
-            }
+            ContentView()
+            .environmentObject(userStateViewModel)
             
-            //ContentView()
-                
         }
     }
 }

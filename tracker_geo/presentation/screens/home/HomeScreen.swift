@@ -13,7 +13,7 @@ struct HomeScreen: View {
         
         TabView {
             DashboardScreen()
-           
+    
             VStack{
                 Button{
                     print(UserDefaults.standard.removeObject(forKey: "token"))
@@ -27,7 +27,6 @@ struct HomeScreen: View {
                 }
             Text("Notification")
                 .tabItem {
-                    
                     Label("Notification", systemImage: "bell")
                 }
             

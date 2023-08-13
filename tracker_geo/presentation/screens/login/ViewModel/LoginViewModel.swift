@@ -8,18 +8,20 @@
 import Foundation
 import Combine
 
+@MainActor
 final class LoginViewModel: ObservableObject{
     
         @Published var loginData: LoginResponse?
         @Published private(set) var isRefreshing = false
         @Published var hasError = false
         @Published  var error: UserError?
+        @Published var isLoggedIn = false
     
     private var loginUseCase = LoginUseCase(
         repository: RepositoryImpl(apiService: ApiService())
         )
 
-    func login(phone:String,password:String){
+    func login(phone:String,password:String) {
         Task{
             DispatchQueue.main.async{
                 self.isRefreshing = true
@@ -31,6 +33,7 @@ final class LoginViewModel: ObservableObject{
                 DispatchQueue.main.async{
                     self.loginData = usecase
                     self.isRefreshing = false
+                    self.isLoggedIn = true
                 }
             }catch{
                 if let userErr = error as? UserError{

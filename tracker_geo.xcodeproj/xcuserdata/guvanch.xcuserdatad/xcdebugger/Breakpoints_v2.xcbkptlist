@@ -39,22 +39,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "967DB7FF-53A5-4B78-B74A-FCF3C470684B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "tracker_geo/ContentView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "21FF8EA2-FA7A-405F-B1B3-952D00DB44E0"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -832,8 +816,8 @@
             filePath = "tracker_geo/presentation/screens/Dashboard/DashViewModel/CurrentRoutesViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
             landmarkName = "getCurrentRoutes()"
             landmarkType = "7">
             <Locations>
@@ -1069,6 +1053,147 @@
             startingLineNumber = "26"
             endingLineNumber = "26"
             landmarkName = "get(endPoint:type:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3923C1BD-2A68-48F9-954F-11225F44DEDA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "tracker_geo/presentation/screens/login/ViewModel/LoginViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "login(phone:password:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A5B902B4-22AD-46CB-9490-C5F36D63C710"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "tracker_geo/presentation/screens/login/ViewModel/LoginViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "login(phone:password:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A5B902B4-22AD-46CB-9490-C5F36D63C710 - d820fc2a7cf5aa93"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in tracker_geo.LoginViewModel.login(phone: Swift.String, password: Swift.String) -&gt; ()"
+                  moduleName = "tracker_geo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/guvanch/tracker_geo/tracker_geo/presentation/screens/login/ViewModel/LoginViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "508">
+               </Location>
+               <Location
+                  uuid = "A5B902B4-22AD-46CB-9490-C5F36D63C710 - 11074096ab14ea2b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in tracker_geo.LoginViewModel.login(phone: Swift.String, password: Swift.String) -&gt; ()"
+                  moduleName = "tracker_geo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/guvanch/tracker_geo/tracker_geo/presentation/screens/login/ViewModel/LoginViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "A5B902B4-22AD-46CB-9490-C5F36D63C710 - 2ecfcf7bbbab1fde"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in tracker_geo.LoginViewModel.login(phone: Swift.String, password: Swift.String) -&gt; ()"
+                  moduleName = "tracker_geo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/guvanch/tracker_geo/tracker_geo/presentation/screens/login/ViewModel/LoginViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  uuid = "A5B902B4-22AD-46CB-9490-C5F36D63C710 - 2ecfcf7bbbab1e85"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in tracker_geo.LoginViewModel.login(phone: Swift.String, password: Swift.String) -&gt; ()"
+                  moduleName = "tracker_geo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/guvanch/tracker_geo/tracker_geo/presentation/screens/login/ViewModel/LoginViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "152">
+               </Location>
+               <Location
+                  uuid = "A5B902B4-22AD-46CB-9490-C5F36D63C710 - 8a045123590a3480"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async -&gt; () in tracker_geo.LoginViewModel.login(phone: Swift.String, password: Swift.String) -&gt; ()"
+                  moduleName = "tracker_geo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/guvanch/tracker_geo/tracker_geo/presentation/screens/login/ViewModel/LoginViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "96">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "43E430E5-7A58-415A-854E-7356D7A396A2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "tracker_geo/presentation/screens/Dashboard/DashViewModel/CurrentRoutesViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "getCurrentRoutes()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "41834D0A-B57B-487D-ADC6-86E18AE70436"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "tracker_geo/presentation/screens/login/ViewModel/LoginViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "login(phone:password:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

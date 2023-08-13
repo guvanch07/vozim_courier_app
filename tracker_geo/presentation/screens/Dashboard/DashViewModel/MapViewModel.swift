@@ -96,6 +96,8 @@ class MapViewModel: NSObject, ObservableObject,CLLocationManagerDelegate{
         self.mapView.setRegion(self.region, animated: true)
         // Smooth animations ..
         self.mapView.setVisibleMapRect(self.mapView.visibleMapRect, animated: true)
+        
+        
     }
      
 }

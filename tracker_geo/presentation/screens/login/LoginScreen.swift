@@ -10,7 +10,8 @@ import InputMask
 
 struct LoginScreen: View {
     
-    @StateObject private var vm = LoginViewModel()
+    @EnvironmentObject var vm: LoginViewModel
+    
     enum Field {
             case phoneField
             case passwordField
@@ -21,6 +22,7 @@ struct LoginScreen: View {
     @State var phoneComplete = false
     @FocusState private var focusedPhoneField: Field?
     @FocusState private var focusedPasswordField: Field?
+    
         
     var body: some View {
         VStack(spacing: 30){
@@ -39,17 +41,11 @@ struct LoginScreen: View {
                 .monospaced()
                 .keyboardType(.phonePad)
                 .returnKeyType(.done)
-//                .onSubmit { textField in
-//                    textField.resignFirstResponder()
-//                }
-//                .onChange(of: phone) { newValue in
-//                    print("\nTEXT: \(phone)\nVALUE: \(phoneField)\nCOMPLETE: \(phoneComplete)")
-//                }
             .padding()
             .overlay(
                 RoundedRectangle(cornerRadius: 5)
                     .stroke(focusedPhoneField != nil ? Color(hex: 0xFFFFA45B) : .gray, lineWidth: 1)
-                )
+            )
             .keyboardType(.phonePad)
             .focused($focusedPhoneField, equals: .phoneField)
             .textContentType(.familyName)
@@ -66,36 +62,36 @@ struct LoginScreen: View {
             .textContentType(.emailAddress)
             .submitLabel(.done)
             .textFieldStyle(BorderedStyle(focused: focusedPasswordField != nil))
-                Button {
-                    vm.login(phone: phone, password: passwordField)
-                    hideKeyboard()
-                } label: {
-                    HStack{
-                        Spacer()
-                        if vm.isRefreshing{
-                            ProgressView()
-                        }else{
-                            Text("Начать")
-                        }
-                        Spacer()
+            
+            Button {
+                vm.login(phone: phone, password: passwordField)
+                hideKeyboard()
+            } label: {
+                HStack{
+                    Spacer()
+                    if vm.isRefreshing{
+                        ProgressView()
+                    }else{
+                        Text("Начать")
                     }
+                    Spacer()
                 }
-                .disabled(vm.isRefreshing)
-                .padding([.vertical], 10)
-                .foregroundColor(.black)
-                .background(appAccentColor)
-                .cornerRadius(24)
-                .alert(isPresented: $vm.hasError, error: vm.error) {
-                    Button{
-                        
-                    }label: {
-                        Text("OK")
-                    }
-                }
-                Spacer()
+            }
+            .disabled(vm.isRefreshing)
+            .padding([.vertical], 10)
+            .foregroundColor(.black)
+            .background(appAccentColor)
+            .cornerRadius(24)
+            
+            Spacer()
         }
         .padding(24)
         .contentShape(Rectangle())
+        .alert(isPresented: $vm.hasError, error: vm.error) {
+            Text("OK").onTapGesture {
+                print("click")
+            }
+        }
         .onTapGesture {
             print("tap")
             hideKeyboard()
