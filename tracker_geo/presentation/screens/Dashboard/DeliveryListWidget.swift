@@ -24,7 +24,7 @@ struct DeliveryListWidget: View {
                     List {
                         ForEach(vm.listReceipts,id: \.id) { i in
                             NavigationLink {
-                                DeliveryDetailScreen(id: i.id, title: i.address.street)
+                                DeliveryDetailScreen(receipt: i, id: i.id)
                             } label: {
                                 DeliveryItem(data: i, isFirst: false)
                                     .id(i.id)
@@ -37,7 +37,6 @@ struct DeliveryListWidget: View {
         }.task{
             await vm.getCurrentRoutes()
         }.alert(isPresented: $vm.hasError, error: vm.error) {
-            
             Button{
                 Task{
                     //await vm.getCurrentRoutes()

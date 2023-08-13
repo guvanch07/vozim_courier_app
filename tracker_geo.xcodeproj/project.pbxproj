@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C50A008D2A88456A004A23D4 /* InfoDeliverWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50A008C2A88456A004A23D4 /* InfoDeliverWidget.swift */; };
+		C50A008F2A884970004A23D4 /* MainDetailWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50A008E2A884970004A23D4 /* MainDetailWidget.swift */; };
+		C50A00922A885D5F004A23D4 /* AppListTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50A00912A885D5F004A23D4 /* AppListTile.swift */; };
 		C5226C232A6D772600D63CA9 /* api_impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5226C222A6D772600D63CA9 /* api_impl.swift */; };
 		C5226C252A6D79A400D63CA9 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5226C242A6D79A400D63CA9 /* PostModel.swift */; };
 		C5226C272A6D79F100D63CA9 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5226C262A6D79F100D63CA9 /* LoginModel.swift */; };
@@ -62,6 +65,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C50A008C2A88456A004A23D4 /* InfoDeliverWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDeliverWidget.swift; sourceTree = "<group>"; };
+		C50A008E2A884970004A23D4 /* MainDetailWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDetailWidget.swift; sourceTree = "<group>"; };
+		C50A00912A885D5F004A23D4 /* AppListTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppListTile.swift; sourceTree = "<group>"; };
 		C5226C222A6D772600D63CA9 /* api_impl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = api_impl.swift; sourceTree = "<group>"; };
 		C5226C242A6D79A400D63CA9 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		C5226C262A6D79F100D63CA9 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
@@ -309,6 +315,9 @@
 			isa = PBXGroup;
 			children = (
 				C55023F62A7FA5F9004422EC /* DeliveryDetailScreen.swift */,
+				C50A008C2A88456A004A23D4 /* InfoDeliverWidget.swift */,
+				C50A008E2A884970004A23D4 /* MainDetailWidget.swift */,
+				C50A00912A885D5F004A23D4 /* AppListTile.swift */,
 			);
 			path = DeliveryDetail;
 			sourceTree = "<group>";
@@ -519,8 +528,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5226C232A6D772600D63CA9 /* api_impl.swift in Sources */,
+				C50A008D2A88456A004A23D4 /* InfoDeliverWidget.swift in Sources */,
 				C55023FA2A7FC106004422EC /* Colors.swift in Sources */,
 				C5226C2F2A6D82BD00D63CA9 /* repository_impl.swift in Sources */,
+				C50A008F2A884970004A23D4 /* MainDetailWidget.swift in Sources */,
 				C5B96A442A81BA5A004C4C25 /* CurrentRoutesUseCase.swift in Sources */,
 				C57E9D1C2A747324009C73D8 /* AppImagePickerUIView.swift in Sources */,
 				C55023F12A7DE8B8004422EC /* ChipWidget.swift in Sources */,
@@ -541,6 +552,7 @@
 				C56A37152A7D445A00D3511E /* DeliveryListWidget.swift in Sources */,
 				C5C7353B2A79617900A6EBCF /* LoginScreen.swift in Sources */,
 				C5226C312A6DEDEB00D63CA9 /* geo_location_service.swift in Sources */,
+				C50A00922A885D5F004A23D4 /* AppListTile.swift in Sources */,
 				C55023F72A7FA5F9004422EC /* DeliveryDetailScreen.swift in Sources */,
 				C54AE7792A85A5150021F7E5 /* Place.swift in Sources */,
 				C5B96A3D2A81AB70004C4C25 /* Const.swift in Sources */,

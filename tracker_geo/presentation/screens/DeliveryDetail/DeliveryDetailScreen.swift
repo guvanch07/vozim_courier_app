@@ -8,15 +8,28 @@
 import SwiftUI
 
 struct DeliveryDetailScreen: View {
+    
+    let receipt: Receipt
     let id:String
-    let title:String
+
     var body: some View {
-        Text(title)
+      
+        MainDetailWidget(receipt: receipt)
+            .background(Color(uiColor: .systemGroupedBackground))
+            .controlSize(.large)
+            .navigationTitle(receipt.address.street)
+            .navigationBarTitleDisplayMode(.inline)
+           
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Image(systemName: "info.circle")
+                        .onTapGesture {
+                            print("click")
+                        }
+                }
+            }
     }
 }
 
-struct DeliveryDetailScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        DeliveryDetailScreen(id: "", title: "test")
-    }
-}
+
+

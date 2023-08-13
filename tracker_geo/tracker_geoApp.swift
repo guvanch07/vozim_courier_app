@@ -19,6 +19,7 @@ struct tracker_geoApp: App {
             }
             
             //ContentView()
+                
         }
     }
 }

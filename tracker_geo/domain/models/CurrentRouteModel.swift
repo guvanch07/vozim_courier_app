@@ -88,6 +88,15 @@ struct Receipt: Decodable {
         case deliveryTime = "delivery_time"
         case address, services, note
     }
+    var isStock: Bool {
+        get{return  pointType == 3 }
+    }
+    var isDelivery: Bool {
+        get{return pointType == 2}
+    }
+    var isPickUp: Bool {
+        get{return pointType == 1}
+    }
 }
 
 // MARK: - Address
@@ -129,6 +138,7 @@ struct Receiver: Decodable {
     let name, companyName, phone, additional: String
     let address: Address
     let timeFrom, timeTo: String
+   
 
     enum CodingKeys: String, CodingKey {
         case name
@@ -136,6 +146,7 @@ struct Receiver: Decodable {
         case phone, additional, address
         case timeFrom = "time_from"
         case timeTo = "time_to"
+       
     }
 }
 

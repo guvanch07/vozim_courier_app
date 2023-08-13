@@ -21,7 +21,7 @@ struct DashboardScreen: View {
                     ForEach(colors, id: \.self) {
                         Text($0)
                     }
-                }.pickerStyle(SegmentedPickerStyle())
+                }.pickerStyle(.segmented)
                     .padding([.horizontal, .bottom], 15)
                     .background(Color(uiColor: .systemGroupedBackground))
                     .controlSize(.large)
@@ -52,7 +52,7 @@ struct TabItem: View {
         case "Карта":
             MapTab()
         case "Выполнено":
-            Text("Done")
+            DeliveryListWidget()
         default:
             DeliveryListWidget()
         }

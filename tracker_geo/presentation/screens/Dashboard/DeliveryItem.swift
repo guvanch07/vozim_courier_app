@@ -18,7 +18,6 @@ struct DeliveryItem: View {
 let row1 = [
     GridItem(.fixed(30))
 ]
-    
     var body: some View {
         VStack(
             alignment: .leading,
@@ -37,7 +36,6 @@ let row1 = [
                 VStack(
                     alignment: .leading
                 ){
-                   
                     Text(data.goodName.trimmingCharacters(in: .whitespacesAndNewlines))
                         .font(.system(size: 14))
                         .foregroundStyle(.gray)

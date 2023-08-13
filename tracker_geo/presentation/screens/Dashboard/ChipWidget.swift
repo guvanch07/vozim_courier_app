@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ChipWidget: View {
-    var titleKey: String
+    let titleKey: String
     var count: Int?
+    var color: Color?
     var body: some View {
         
         HStack() {
@@ -25,7 +26,7 @@ struct ChipWidget: View {
         .padding(.leading, 8)
         .padding(.trailing, 8)
         .foregroundColor(.black)
-        .background(Color(hex: 0xFFF5F5F5))
+        .background(color ?? Color(hex: 0xFFF5F5F5))
         .cornerRadius(20)
         .overlay(
             RoundedRectangle(cornerRadius: 20)
