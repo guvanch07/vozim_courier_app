@@ -42,6 +42,7 @@ struct DeliveryItem: View {
                 }
             }
             if isFirst{
+                
                 Button {
                     print(UserDefaults.standard.string(forKey: "token") ?? "")
                 }

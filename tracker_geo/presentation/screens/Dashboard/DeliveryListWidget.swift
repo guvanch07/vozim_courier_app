@@ -22,16 +22,17 @@ struct DeliveryListWidget: View {
                     Spacer()
                 }else{
                     List {
-                        ForEach(vm.listReceipts,id: \.id) { i in
+                        ForEach(Array(vm.listReceipts.enumerated()),id: \.offset) {index, element in
                             NavigationLink {
-                                DeliveryDetailScreen(receipt: i, id: i.id)
+                                DeliveryDetailScreen(receipt: element, id: element.id)
                             } label: {
-                                DeliveryItem(data: i, isFirst: false)
-                                    .id(i.id)
+                                DeliveryItem(data: element, isFirst: index == 0)
+                                    .id(element.id)
                                     .padding([.vertical],8)
                             }
                         }
                     }
+                   
                 }
             }
         }.task{
