@@ -9,10 +9,10 @@ import Foundation
 
 
 class CurrentRoutesUseCase {
-    let repository: IRepository
+    private let repository: IRepository
     
-    init(repository: IRepository) {
-        self.repository = repository
+    init() {
+        repository = RepositoryImpl(apiService: ApiService())
     }
     
     func execute() async throws -> CurrentResponseModel {

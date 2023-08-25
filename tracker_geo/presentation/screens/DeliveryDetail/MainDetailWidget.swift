@@ -25,6 +25,20 @@ struct MainDetailWidget: View {
                 .controlSize(.large)
             
             TabDetailItem(receipt: receipt, tab: tab)
+            AnimatedButton {
+                HStack{
+                    Spacer()
+                    Text("Начать")
+                    Spacer()
+                }
+                .foregroundColor(.black)
+            } action: {
+                try? await Task.sleep(for: .seconds(2))
+                return .success
+            }
+            .padding(.horizontal, 15)
+            .padding(.bottom,7)
+
         }
     }
 }

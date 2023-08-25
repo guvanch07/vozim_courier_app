@@ -41,12 +41,12 @@ struct AnimatedButton<ButtonContent: View>: View {
         },label: {
             content()
                 .padding(.vertical,10)
-                .padding(.horizontal,20)
+                .padding(.horizontal,30)
                 .lineLimit(1)
-                .frame(width: isLoading ? 50 : nil,height: isLoading ? 50 : nil)
-                .background(Color(taskStatus == .idle ? .blue : taskStatus == .success ? .green : .red))
-                //.opacity(isLoading ? 0 : 1)
-                
+                .frame (width: isLoading ? 50 : nil, height: isLoading ? 50 : nil)
+                .background(Color (taskStatus == .idle ? .init(Color(hex: 0xFFFFA45B)) : taskStatus == .success ? .green : .red).shadow(.drop(color: .black.opacity(0.15), radius:
+                                                                                                                        60)))
+            
             
                 .overlay {
                     if isLoading && taskStatus == .idle {
@@ -55,7 +55,7 @@ struct AnimatedButton<ButtonContent: View>: View {
                 }
                 .overlay {
                     if taskStatus != .idle {
-                        Image(systemName: isFailed ? "exclaminationmark" : "checkmark")
+                        Image(systemName: isFailed ? "exclamationmark" : "checkmark")
                             .font(.title2.bold())
                             .foregroundColor(.white)
                     }
@@ -63,9 +63,9 @@ struct AnimatedButton<ButtonContent: View>: View {
             
         }
         ).disabled(isLoading)
-            .cornerRadius(6)
-        .animation(.easeOut, value: isLoading)
-        .animation(.easeOut, value: taskStatus)
+            .cornerRadius(30)
+            .animation(.easeIn, value: isLoading)
+            .animation(.easeOut, value: taskStatus)
     }
 }
 
@@ -75,4 +75,28 @@ enum TaskStatus: Equatable{
     case success
 }
 
-
+//content ()
+//•padding (horizontal, 30)
+//•padding (.vertical, 12) .opacity (isLoading ? 0 : 1) .lineLimit(1)
+//frame (width: isLoading ? 50 : nil, height: isLoading ? 50 : nil) .background(Color (taskStatus == .idle ? .white : taskStatus == .success ? •green : •red). shadow(.drop(color: .black.opacity(0.15), radius:
+//6)), in: •capsule)
+//.overlay {
+//if isLoading && taskStatus == .idle {
+//ProgressView()
+//]
+//}
+//.overlay {
+//if taskStatus I= .idle {
+//Image (systemName: isFailed ? "exclamationmark" : "checkmark")
+//.font (.title2.bold())
+//•foregroundStyle(.white)
+//}
+//•wiggle (wiggle)
+//sabled(isLoading)
+//pover (isPresented: SshowPopup, content: {
+//Text (popupMessage)
+//•font («caption)
+//•foregroundStyle(.gray)
+//•padding (.horizontal, 10)
+//•presentationCompact^daptation (.popover)
+//imation (.snappy, value: isLoading) imation (.snappy, value: taskStatus)

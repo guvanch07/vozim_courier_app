@@ -11,7 +11,6 @@ struct DeliveryItem: View {
     let data: Receipt
     let isFirst: Bool
     
- 
     var body: some View {
         VStack(
             alignment: .leading,
@@ -42,29 +41,14 @@ struct DeliveryItem: View {
                 }
             }
             if isFirst{
-                
-                Button {
-                    print(UserDefaults.standard.string(forKey: "token") ?? "")
-                }
-            label: {
-                HStack(spacing: 5){
-                    Text("Открыть в навигаторе")
-                        .foregroundStyle(appAccentColor)
-                    Image(systemName: "arrow.right")
-                        .foregroundColor(appAccentColor)
-                }.padding([.horizontal],10)
-                    .padding([.vertical],5)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(appAccentColor, lineWidth: 1)
-                    )
-            }
+                StartT0WorkButton(isStarted: false,id: data.id)
             }else{
                 InfoChips(data: data)
             }
         }
     }
 }
+
 
 
 

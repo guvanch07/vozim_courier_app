@@ -9,7 +9,7 @@ import Foundation
 
 import Combine
 
-final class CurrentRoutesViewModel: ObservableObject{
+ final class CurrentRoutesViewModel: ObservableObject{
     
         //@Published var currentRoutes: CurrentResponseModel?
         @Published var listReceipts:[Receipt] = []
@@ -17,10 +17,14 @@ final class CurrentRoutesViewModel: ObservableObject{
         @Published var hasError = false
         @Published  var error: UserError?
         @Published var isLoggedIn = false
+     
+        @Published var startToWorkData: StartToWorkResponse?
+        @Published private(set) var isRefreshingStart = false
     
-    private var currentRoutesUseCase = CurrentRoutesUseCase(
-        repository: RepositoryImpl(apiService: ApiService())
-        )
+    private let currentRoutesUseCase = CurrentRoutesUseCase()
+    private let startToWorkUseCase = StartToWorkUseCase()
+     
+     
 
     func getCurrentRoutes()  async {
             DispatchQueue.main.async{
@@ -44,5 +48,28 @@ final class CurrentRoutesViewModel: ObservableObject{
                     }
                 }
         }
+    }
+    
+     func startToWork(id:String) async{
+        DispatchQueue.main.async{
+            self.isRefreshingStart = true
+        }
+        do {
+            let data = StartToWorkRequest(receipt: id, geo: GeoModel(lat: 23, lng: 43))
+            let usecase = try await startToWorkUseCase.execute(startToWorkRequest: data)
+            print(usecase)
+            DispatchQueue.main.async{
+                self.startToWorkData = usecase
+                self.isRefreshingStart = false
+            }
+        }catch{
+            DispatchQueue.main.async{
+                if let userErr = error as? UserError{
+                    self.hasError = true
+                    self.error = userErr
+                    self.isRefreshingStart = false
+                }
+            }
+    }
     }
 }

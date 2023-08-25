@@ -11,4 +11,5 @@ protocol IRepository {
     func getPlacholderList() async throws -> [PostModel]
     func login(loginRequest: LoginRequest) async throws -> LoginResponse
     func getCurrentRoutes() async throws -> CurrentResponseModel
+    func startToWork(startToWork: StartToWorkRequest) async throws -> StartToWorkResponse
 }

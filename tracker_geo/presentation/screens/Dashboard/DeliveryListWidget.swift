@@ -28,7 +28,8 @@ struct DeliveryListWidget: View {
                             } label: {
                                 DeliveryItem(data: element, isFirst: index == 0)
                                     .id(element.id)
-                                    .padding([.vertical],8)
+                                    .padding(.vertical,8)
+                                    
                             }
                         }
                     }

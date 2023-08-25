@@ -9,8 +9,6 @@ import Foundation
 
 final class RepositoryImpl: IRepository{
     
-    
-        
     let apiService: ApiService
     
     init(apiService: ApiService) {
@@ -18,28 +16,30 @@ final class RepositoryImpl: IRepository{
     }
     
     func login(loginRequest: LoginRequest) async throws -> LoginResponse {
-       
         let request = try await apiService.post(
             endPoint: "\(baseUrl)courier/login",
             data: loginRequest.toJson(),
             type: LoginResponse.self)
-        
         return request
     }
     
     func getPlacholderList() async throws -> [PostModel] {
         let request = try await apiService.get(endPoint: "https://jsonplaceholder.typicode.com/posts",type: [PostModel].self)
-        
         return request
     }
     
     func getCurrentRoutes() async throws -> CurrentResponseModel {
         let response = try await apiService.get(endPoint: "\(baseUrl)courier/currentRoute",type: CurrentResponseModel.self)
-        
         return response
     }
-    
-    
-    
+    func startToWork(startToWork: StartToWorkRequest) async throws -> StartToWorkResponse {
+        let response = try await apiService.post(
+            endPoint: "\(baseUrl)courier/start",
+            data: startToWork.toJson(),
+            type: StartToWorkResponse.self
+        )
+        print(response)
+        return response
+    }
     
 }
