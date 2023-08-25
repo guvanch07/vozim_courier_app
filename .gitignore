@@ -1,0 +1,4 @@
+
+*.xcodeproj/*
+!*.tracker_geo/presentation/screens/utils/
+
