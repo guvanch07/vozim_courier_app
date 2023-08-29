@@ -61,7 +61,7 @@ struct TabItem: View {
 
 struct MapTab: View{
     @StateObject var mapData = MapViewModel()
-       @State var locationManager = CLLocationManager()
+    @State var locationManager = CLLocationManager()
     var body: some View{
         MapView()
         
@@ -77,9 +77,12 @@ struct MapTab: View{
                       message: Text("Please Enable Permission In App Settings"),
                       dismissButton: .default(Text("Goto Settings"),
                                               action: {
-                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-                }))
-                
-            })
+                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!
+                    )
+                }
+                )
+                )
+            }
+        )
     }
 }

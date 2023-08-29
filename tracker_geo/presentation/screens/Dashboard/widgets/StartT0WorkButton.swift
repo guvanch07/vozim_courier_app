@@ -10,12 +10,14 @@ import SwiftUI
 struct StartT0WorkButton: View {
     let isStarted: Bool
     let id: String
+    let receipt:Receipt
     
     @StateObject private var vm = CurrentRoutesViewModel()
+    @State private var isPresented = false
    
     
     var body: some View {
-        if vm.startToWorkData != nil || isStarted {
+        if  isStarted {
             Button(
                 action: {
                     print(UserDefaults.standard.string(forKey: "token") ?? "")
@@ -37,27 +39,34 @@ struct StartT0WorkButton: View {
                 print(UserDefaults.standard.string(forKey: "token") ?? "")
             }
         }else{
-            Button(
-                action: {
-                    print(UserDefaults.standard.string(forKey: "token") ?? "")
-                    
-                }, label: {
-                    if vm.isRefreshingStart{
-                        ProgressView()
-                    }else{
-                        Text("Начать")
+            NavigationStack(){
+                Button(
+                    action: {
+                        print(UserDefaults.standard.string(forKey: "token") ?? "")
+                        
+                    }, label: {
+                        if vm.isRefreshingStart{
+                            ProgressView()
+                        }else{
+                            Text("Начать")
+                        }
                     }
-                }
-            )
-            .disabled(false)
-            .padding(.vertical, 7)
-            .padding(.horizontal, 50)
-            .foregroundColor(.black)
-            .background(appAccentColor)
-            .cornerRadius(24)
-            .onTapGesture {
-                Task{
-                    await vm.startToWork(id: id)
+                )
+                .disabled(false)
+                .padding(.vertical, 7)
+                .padding(.horizontal, 50)
+                .foregroundColor(.black)
+                .background(appAccentColor)
+                .cornerRadius(24)
+                .onTapGesture {
+                    Task{
+                       let response  = await vm.startToWork(id: id)
+                        if response != nil {
+                            isPresented = true
+                        }
+                    }
+                }.navigationDestination(isPresented: $isPresented) {
+                    MainDetailWidget(receipt: receipt)
                 }
             }
         }

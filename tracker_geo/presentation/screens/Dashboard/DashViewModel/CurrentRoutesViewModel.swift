@@ -18,7 +18,6 @@ import Combine
         @Published  var error: UserError?
         @Published var isLoggedIn = false
      
-        @Published var startToWorkData: StartToWorkResponse?
         @Published private(set) var isRefreshingStart = false
     
     private let currentRoutesUseCase = CurrentRoutesUseCase()
@@ -50,26 +49,27 @@ import Combine
         }
     }
     
-     func startToWork(id:String) async{
-        DispatchQueue.main.async{
-            self.isRefreshingStart = true
-        }
-        do {
-            let data = StartToWorkRequest(receipt: id, geo: GeoModel(lat: 23, lng: 43))
-            let usecase = try await startToWorkUseCase.execute(startToWorkRequest: data)
-            print(usecase)
-            DispatchQueue.main.async{
-                self.startToWorkData = usecase
-                self.isRefreshingStart = false
-            }
-        }catch{
-            DispatchQueue.main.async{
-                if let userErr = error as? UserError{
-                    self.hasError = true
-                    self.error = userErr
-                    self.isRefreshingStart = false
-                }
-            }
-    }
-    }
+     func startToWork(id:String) async -> StartToWorkResponse? {
+         DispatchQueue.main.async{
+             self.isRefreshingStart = true
+         }
+         do {
+             let data = StartToWorkRequest(receipt: id, geo: GeoModel(lat: 23, lng: 43))
+             let usecase = try await startToWorkUseCase.execute(startToWorkRequest: data)
+             print(usecase)
+             DispatchQueue.main.async{
+                 self.isRefreshingStart = false
+             }
+             return usecase
+         }catch{
+             DispatchQueue.main.async{
+                 if let userErr = error as? UserError{
+                     self.hasError = true
+                     self.error = userErr
+                     self.isRefreshingStart = false
+                 }
+             }
+         }
+         return nil
+     }
 }
