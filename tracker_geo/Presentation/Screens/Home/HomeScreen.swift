@@ -13,7 +13,6 @@ struct HomeScreen: View {
         
         TabView {
             DashboardScreen()
-    
             VStack{
                 Button{
                     print(UserDefaults.standard.removeObject(forKey: "token"))
@@ -23,13 +22,16 @@ struct HomeScreen: View {
                 Text("Search")
             }.tabItem {
                     Label("Search", systemImage: "magnifyingglass")
-                    
                 }
-            Text("Notification")
-                .tabItem {
+            if #available(iOS 17.0, *){
+                ProfileView().tabItem {
                     Label("Notification", systemImage: "bell")
                 }
-            
+            }else{
+                EmptyView().tabItem {
+                    Label("Notification", systemImage: "bell")
+                }
+            }
         }
         
     }

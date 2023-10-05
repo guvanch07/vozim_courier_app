@@ -37,7 +37,7 @@ import Combine
                     self.isRefreshing = false
                     self.isLoggedIn = true
                 }
-                
+            UserDefaults.standard.set(usecase.id, forKey: "routeId")
             }catch{
                 DispatchQueue.main.async{
                     if let userErr = error as? UserError{

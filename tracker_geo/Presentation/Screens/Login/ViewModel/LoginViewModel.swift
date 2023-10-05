@@ -31,7 +31,6 @@ final class LoginViewModel: ObservableObject{
                 self.isRefreshing = true
             }
             do {
-                
                 let data = LoginRequest(phone: phone, password: password)
                 let usecase = try await loginUseCase.execute(loginRequest: data)
                 UserDefaults.standard.set(usecase.token, forKey: "token")

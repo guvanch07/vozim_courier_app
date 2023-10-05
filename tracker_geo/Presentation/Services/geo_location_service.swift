@@ -16,6 +16,7 @@ import os
         let logger = Logger(subsystem: "com.apple.tracker_geo", category: "LocationsHandler")
 
         static let shared = LocationsHandler()  // Create a single, shared instance of the object.
+        private let geuTrack = GeoTrackUseCase()
 
         private let manager: CLLocationManager
         private var background: CLBackgroundActivitySession?
@@ -57,6 +58,7 @@ import os
                             self.lastLocation = loc
                             self.isStationary = update.isStationary
                             self.count += 1
+                            sendGeoTrack(loc:loc)
                             print("Location \(self.count): \(self.lastLocation)")
                         }
                     }
@@ -66,6 +68,35 @@ import os
                 return
             }
         }
+    func sendGeoTrack(loc: CLLocation)  {
+        Task{
+            do{
+                let routeId = UserDefaults.standard.string(forKey: "routeId") ?? ""
+                logger.info("\(routeId)")
+                let geo = Geo(id: count, lat: loc.coordinate.latitude,
+                              lng: loc.coordinate.latitude
+//                              acu: loc.horizontalAccuracy, spd: loc.speed,
+//                              acs: loc.speedAccuracy, hdn: loc.altitude,
+//                              ach: 0, alt: loc.altitude,
+//                              aca: loc.ellipsoidalAltitude, act: loc.timestamp.currentTimeMillis(),
+//                              note: "\(String(describing: loc.sourceInformation))",
+//                              flr: loc.floor?.level
+                )
+                let request = GeoTrackRequest(
+                    event: "swiftGeoTrtack",
+                    id: routeId,
+                    geo: geo
+                )
+                let track = try await geuTrack.execute(request: request)
+//                logger.log("\(track.success ?? false)")
+//                logger.info("\(self.manager.heading?.magneticHeading ?? 0)")
+//                logger.info("\(self.manager.heading?.headingAccuracy ?? 0)")
+//                logger.info("\(self.manager.heading?.trueHeading ?? 0)")
+            }catch{
+                logger.error("\(error)")
+            }
+        }
+    }
     
         func stopLocationUpdates() {
             print("Stopping location updates")
@@ -76,30 +107,9 @@ import os
     
     }
 
+extension Date {
+    func currentTimeMillis() -> Int64 {
+        return Int64(self.timeIntervalSince1970 * 1000)
+    }
+}
 
-//struct ContentView: View {
-//    let logger = Logger(subsystem: "com.apple.liveUpdatesSample", category: "DemoView")
-//    @ObservedObject var locationsHandler = LocationsHandler.shared
-//    
-//    var body: some View {
-//        VStack {
-//            Spacer()
-//            Text("Location: \(self.locationsHandler.lastLocation)")
-//                .padding(10)
-//            Text("Count: \(self.locationsHandler.count)")
-//            Text("isStationary:")
-//            Rectangle()
-//                .fill(self.locationsHandler.isStationary ? .green : .red)
-//                .frame(width: 100, height: 100, alignment: .center)
-//            Spacer()
-//            Button(self.locationsHandler.updatesStarted ? "Stop Location Updates" : "Start Location Updates") {
-//                self.locationsHandler.updatesStarted ? self.locationsHandler.stopLocationUpdates() : self.locationsHandler.startLocationUpdates()
-//            }
-//            .buttonStyle(.bordered)
-//            Button(self.locationsHandler.backgroundActivity ? "Stop BG Activity Session" : "Start BG Activity Session") {
-//                self.locationsHandler.backgroundActivity.toggle()
-//            }
-//            .buttonStyle(.bordered)
-//        }
-//    }
-//}
