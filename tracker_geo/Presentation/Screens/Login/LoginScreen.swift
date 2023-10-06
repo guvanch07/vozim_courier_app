@@ -9,9 +9,7 @@ import SwiftUI
 import InputMask
 
 struct LoginScreen: View {
-    
     @EnvironmentObject var vm: LoginViewModel
-    
     enum Field {
             case phoneField
             case passwordField

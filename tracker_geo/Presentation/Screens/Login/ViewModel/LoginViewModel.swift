@@ -12,17 +12,17 @@ import os
 @MainActor
 final class LoginViewModel: ObservableObject{
     
-        @Published var loginData: LoginResponse?
-        @Published private(set) var isRefreshing = false
-        @Published var hasError = false
-        @Published  var error: UserError?
-        @Published var isLoggedIn = false
+    @Published var loginData: LoginResponse?
+    @Published private(set) var isRefreshing = false
+    @Published var hasError = false
+    @Published  var error: UserError?
+    @Published var isLoggedIn = false
     let logger = Logger(subsystem: "com.apple.tracker_geo", category: "Login")
     
     private var loginUseCase = LoginUseCase(
         repository: RepositoryImpl(apiService: ApiService())
-        )
-
+    )
+    
     func login(phone:String,password:String) {
         logger.log("\(phone)")
         logger.log("\(password)")
@@ -47,6 +47,19 @@ final class LoginViewModel: ObservableObject{
                         self.isRefreshing = false
                     }
                 }
+            }
+        }
+    }
+    func logOut(){
+        DispatchQueue.main.async{
+            self.isRefreshing = true
+        }
+        //guard let response = response as? HTTPURLResponse, response.statusCode == 200 else
+        do{
+            UserDefaults.standard.removeObject(forKey: "token")
+            DispatchQueue.main.async{
+                self.isRefreshing = false
+                self.isLoggedIn = false
             }
         }
     }

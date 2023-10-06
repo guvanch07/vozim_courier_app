@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct HomeScreen: View {
-   
+    @StateObject private var vm = LoginViewModel()
     var body: some View {
         
         TabView {
             DashboardScreen()
             VStack{
                 Button{
-                    print(UserDefaults.standard.removeObject(forKey: "token"))
+                    vm.logOut()
                 }label: {
-                    Text("token")
+                    Text("remove token")
                 }
                 Text("Search")
             }.tabItem {
