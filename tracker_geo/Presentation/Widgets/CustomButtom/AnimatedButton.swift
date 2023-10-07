@@ -46,8 +46,6 @@ struct AnimatedButton<ButtonContent: View>: View {
                 .frame (width: isLoading ? 50 : nil, height: isLoading ? 50 : nil)
                 .background(Color (taskStatus == .idle ? .init(Color(hex: 0xFFFFA45B)) : taskStatus == .success ? .green : .red).shadow(.drop(color: .black.opacity(0.15), radius:
                                                                                                                     60)))
-            
-            
                 .overlay {
                     if isLoading && taskStatus == .idle {
                         ProgressView()

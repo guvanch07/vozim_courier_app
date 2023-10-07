@@ -10,10 +10,9 @@ import SwiftUI
 struct MainDetailWidget: View {
     let receipt: Receipt
     @State private var tab = "Информация"
+    @StateObject private var vm = DetailViewModel()
     var colors = ["Информация", "Карта"]
-    
     var body: some View {
-       
         VStack{
             Picker("Where", selection: $tab) {
                 ForEach(colors, id: \.self) {
@@ -23,22 +22,42 @@ struct MainDetailWidget: View {
                 .padding([.top,.trailing,.leading],15)
                 .background(Color(uiColor: .systemGroupedBackground))
                 .controlSize(.large)
-            
             TabDetailItem(receipt: receipt, tab: tab)
             AnimatedButton {
                 HStack{
                     Spacer()
-                    Text("Начать")
+                    Text(actionButtonText())
                     Spacer()
                 }
                 .foregroundColor(.black)
             } action: {
-                try? await Task.sleep(for: .seconds(1))
-                return .success
+                if receipt.isStart{
+                    return await startAction()
+                }else if(receipt.isArrived || vm.startToWorkSucces?.success ?? false){
+                    return .success
+                }else{
+                    return .success
+                }
             }
             .padding(.horizontal, 15)
             .padding(.bottom,7)
-
+        }
+    }
+    func actionButtonText() -> String {
+        if receipt.isStart || vm.startToWorkSucces?.success ?? false {
+            return tab == colors[0] ? "Начать" : "Открыть в навигаторе"
+        }else if(receipt.isArrived || vm.startToWorkSucces?.success ?? false){
+            return "Я приехал"
+        }
+        else{
+            return "any"
+        }
+    }
+    func startAction() async -> TaskStatus{
+        if await vm.startToWork(id: receipt.id)?.success ?? false {
+            return .success
+        }else{
+            return .faild(vm.startToWorkSucces?.message ?? "fix")
         }
     }
 }

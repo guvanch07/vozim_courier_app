@@ -26,7 +26,6 @@ struct DoneRoutesScreen: View {
                             .id($0.id)
                             .padding(.vertical,8)
                     }
-                    
                 }
             }
         }.task{

@@ -100,6 +100,15 @@ struct Receipt: Decodable {
     var onlyDelivery: Bool {
         get{return pointType != 3 && pointType != 1}
     }
+    var isStart: Bool {
+        get{return status != 5}
+    }
+    var isArrived: Bool {
+        get{return status != 6}
+    }
+    var isComplete: Bool {
+        get{return status != 4}
+    }
 }
 
 // MARK: - Address

@@ -12,7 +12,7 @@ struct StartT0WorkButton: View {
     let id: String
     let receipt:Receipt
     
-    @StateObject private var vm = CurrentRoutesViewModel()
+    @StateObject private var vm = DetailViewModel()
     @State private var isPresented = false
    
     
@@ -45,10 +45,11 @@ struct StartT0WorkButton: View {
                         print(UserDefaults.standard.string(forKey: "token") ?? "")
                         
                     }, label: {
-                        if vm.isRefreshingStart{
+                        if vm.isLoading{
                             ProgressView()
                         }else{
                             Text("Начать")
+                            
                         }
                     }
                 )
