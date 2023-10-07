@@ -15,7 +15,7 @@ class CurrentRoutesUseCase {
         repository = RepositoryImpl(apiService: ApiService())
     }
     
-    func execute() async throws -> CurrentResponseModel {
-          try await repository.getCurrentRoutes()
+    func execute(tab:Int) async throws -> CurrentResponseModel {
+        try await repository.getCurrentRoutes(tab:tab)
     }
 }

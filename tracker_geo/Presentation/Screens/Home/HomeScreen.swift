@@ -8,19 +8,24 @@
 import SwiftUI
 
 struct HomeScreen: View {
-    @StateObject private var vm = LoginViewModel()
+    @EnvironmentObject var vm: LoginViewModel
     var body: some View {
         
         TabView {
             DashboardScreen()
             VStack{
                 Button{
+                    print("\(String(describing: UserDefaults.standard.string(forKey: "token")))")
+                }label: {
+                    Text("show token")
+                }
+                Button{
                     vm.logOut()
                 }label: {
                     Text("remove token")
                 }
                 Text("Search")
-            }.tabItem {
+            }.tabItem { 
                     Label("Search", systemImage: "magnifyingglass")
                 }
             if #available(iOS 17.0, *){

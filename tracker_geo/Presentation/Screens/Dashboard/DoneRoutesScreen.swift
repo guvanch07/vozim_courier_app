@@ -1,13 +1,13 @@
 //
-//  DeliveryListWidget.swift
+//  DoneRoutesListScreen.swift
 //  tracker_geo
 //
-//  Created by Guvanch Amanov on 4.08.23.
+//  Created by Guvanch Amanov on 7.10.23.
 //
 
 import SwiftUI
 
-struct DeliveryListWidget: View {
+struct DoneRoutesScreen: View {
     @StateObject private var vm = CurrentRoutesViewModel()
     var body: some View {
         VStack{
@@ -21,19 +21,16 @@ struct DeliveryListWidget: View {
                     Text("NO ROUTES")
                     Spacer()
                 }else{
-                    List(Array(vm.listReceipts.enumerated()), id: \.offset) { index, element in
-                        NavigationLink {
-                            DeliveryDetailScreen(receipt: element, id: element.id)
-                        } label: {
-                            DeliveryItem(data: element, isFirst: index == 0)
-                                .id(element.id)
-                                .padding(.vertical,8)
-                        }
+                    List(vm.listReceipts,id: \.id) {
+                        DeliveryItem(data: $0, isFirst: false)
+                            .id($0.id)
+                            .padding(.vertical,8)
                     }
+                    
                 }
             }
         }.task{
-            await vm.getCurrentRoutes(tab: 0)
+            await vm.getCurrentRoutes(tab: 1)
         }.alert(isPresented: $vm.hasError, error: vm.error) {
             Button{
                 Task{
@@ -46,8 +43,7 @@ struct DeliveryListWidget: View {
     }
 }
 
-struct DeliveryListWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        DeliveryListWidget()
-    }
+
+#Preview {
+    DoneRoutesScreen()
 }

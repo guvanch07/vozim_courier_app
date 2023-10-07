@@ -28,8 +28,8 @@ final class RepositoryImpl: IRepository{
         return request
     }
     
-    func getCurrentRoutes() async throws -> CurrentResponseModel {
-        let response = try await apiService.get(endPoint: "\(baseUrl)courier/currentRoute",type: CurrentResponseModel.self)
+    func getCurrentRoutes(tab:Int) async throws -> CurrentResponseModel {
+        let response = try await apiService.get(endPoint: "\(baseUrl)courier/currentRoute?tab=\(tab)",type: CurrentResponseModel.self)
         return response
     }
     func startToWork(startToWork: RouteWorkRequest) async throws -> SuccesResponse {

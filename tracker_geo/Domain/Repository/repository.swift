@@ -10,7 +10,7 @@ import Foundation
 protocol IRepository {
     func getPlacholderList() async throws -> [PostModel]
     func login(loginRequest: LoginRequest) async throws -> LoginResponse
-    func getCurrentRoutes() async throws -> CurrentResponseModel
+    func getCurrentRoutes(tab: Int) async throws -> CurrentResponseModel
     func startToWork(startToWork: RouteWorkRequest) async throws -> SuccesResponse
     func arriveToAddress(arrive: RouteWorkRequest) async throws -> SuccesResponse
     func geoTrack(geo: GeoTrackRequest) async throws -> SuccesResponse

@@ -54,7 +54,7 @@ struct TabItem: View {
         case "Карта":
             MapView()
         case "Выполнено":
-            DeliveryListWidget()
+            DoneRoutesScreen()
         default:
             DeliveryListWidget()
         }
