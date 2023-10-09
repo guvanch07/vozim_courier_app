@@ -76,6 +76,7 @@ class ApiService{
             let (data, response) = try await URLSession.shared.data(for: request)
             logger.info("\(data)")
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                logger.info("\(response as? HTTPURLResponse)?.statusCode)")
                 switch (response as? HTTPURLResponse)?.statusCode {
                 case 400:
                     throw UserError.badUrl

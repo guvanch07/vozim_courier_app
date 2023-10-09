@@ -19,7 +19,6 @@ struct DeliveryDetailScreen: View {
             .controlSize(.large)
             .navigationTitle(receipt.address.street)
             .navigationBarTitleDisplayMode(.inline)
-        
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Image(systemName: "info.circle")

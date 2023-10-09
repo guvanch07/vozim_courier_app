@@ -29,7 +29,9 @@ final class RepositoryImpl: IRepository{
     }
     
     func getCurrentRoutes(tab:Int) async throws -> CurrentResponseModel {
-        let response = try await apiService.get(endPoint: "\(baseUrl)courier/currentRoute?tab=\(tab)",type: CurrentResponseModel.self)
+        let response = try await apiService.get(
+            endPoint: "\(baseUrl)courier/currentRoute?tab=\(tab)",
+            type: CurrentResponseModel.self)
         return response
     }
     func startToWork(startToWork: RouteWorkRequest) async throws -> SuccesResponse {
@@ -60,4 +62,11 @@ final class RepositoryImpl: IRepository{
         return response
     }
     
+    func getAllCargo() async throws -> AllCargoResponse {
+        let response = try await apiService.get(
+            endPoint: "\(baseUrl)courier/bodyCargos",
+            type: AllCargoResponse.self
+        )
+        return response
+    }
 }

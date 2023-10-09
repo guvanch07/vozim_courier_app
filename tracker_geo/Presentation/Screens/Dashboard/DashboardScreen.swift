@@ -30,7 +30,7 @@ struct DashboardScreen: View {
                 }
         }
         .tabItem {
-            Label("Home", systemImage: "house")
+            Label("Маршрут", systemImage: "arrow.triangle.swap").labelStyle(.iconOnly)
         }
         .toolbar(.visible, for: .navigationBar)
         .toolbarBackground(

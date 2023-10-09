@@ -1,38 +1,33 @@
 //
-//  CurrentRoutesViewModel.swift
+//  GetAllCargoScreen.swift
 //  tracker_geo
 //
-//  Created by Guvanch Amanov on 8.08.23.
+//  Created by Guvanch Amanov on 9.10.23.
 //
 
 import Foundation
-
 import Combine
 
-final class CurrentRoutesViewModel: ObservableObject{
+final class GetAllCargoViewModel: ObservableObject{
     
-    //@Published var currentRoutes: CurrentResponseModel?
-    @Published var listReceipts:[Receipt] = []
+    @Published var listCargos:[Receipt] = []
     @Published private(set) var isRefreshing = false
     @Published var hasError = false
     @Published  var error: UserError?
-    @Published var isLoggedIn = false
     
-    private let currentRoutesUseCase = CurrentRoutesUseCase()
+    private let getAllcargoUseCase = GetAllCargoUseCase()
     
-    func getCurrentRoutes(tab: Int)  async {
+    func getAllCargos()  async {
         DispatchQueue.main.async{
             self.isRefreshing = true
         }
         do {
-            let usecase = try await currentRoutesUseCase.execute(tab:tab)
+            let usecase = try await getAllcargoUseCase.execute()
             print(usecase.receipts[0].id)
             DispatchQueue.main.async{
-                self.listReceipts = usecase.receipts
+                self.listCargos = usecase.receipts
                 self.isRefreshing = false
-                self.isLoggedIn = true
             }
-            UserDefaults.standard.set(usecase.id, forKey: "routeId")
         }catch{
             DispatchQueue.main.async{
                 if let userErr = error as? UserError{

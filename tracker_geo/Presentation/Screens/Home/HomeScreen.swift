@@ -13,28 +13,14 @@ struct HomeScreen: View {
         
         TabView {
             DashboardScreen()
-            VStack{
-                Button{
-                    print("\(String(describing: UserDefaults.standard.string(forKey: "token")))")
-                }label: {
-                    Text("show token")
-                }
-                Button{
-                    vm.logOut()
-                }label: {
-                    Text("remove token")
-                }
-                Text("Search")
-            }.tabItem { 
-                    Label("Search", systemImage: "magnifyingglass")
-                }
+            CargoScreen()
             if #available(iOS 17.0, *){
                 ProfileView().tabItem {
-                    Label("Notification", systemImage: "bell")
+                    Label("Профиль", systemImage: "person").labelStyle(.iconOnly)
                 }
             }else{
                 EmptyView().tabItem {
-                    Label("Notification", systemImage: "bell")
+                    Label("Профиль", systemImage: "person").labelStyle(.iconOnly)
                 }
             }
         }
@@ -48,3 +34,19 @@ struct HomeScreen_Previews: PreviewProvider {
         HomeScreen()
     }
 }
+
+//VStack{
+//    Button{
+//        print("\(String(describing: UserDefaults.standard.string(forKey: "token")))")
+//    }label: {
+//        Text("show token")
+//    }
+//    Button{
+//        vm.logOut()
+//    }label: {
+//        Text("remove token")
+//    }
+//    Text("Search")
+//}.tabItem {
+//        Label("Search", systemImage: "magnifyingglass")
+//    }
