@@ -26,12 +26,14 @@ final class CurrentRoutesViewModel: ObservableObject{
         }
         do {
             let usecase = try await currentRoutesUseCase.execute(tab:tab)
-            print(usecase.receipts[0].id)
             DispatchQueue.main.async{
                 self.listReceipts = usecase.receipts
                 self.isRefreshing = false
                 self.isLoggedIn = true
             }
+            print(usecase.receipts.map({ item in
+                print("\(item.status)")
+            }))
             UserDefaults.standard.set(usecase.id, forKey: "routeId")
         }catch{
             DispatchQueue.main.async{

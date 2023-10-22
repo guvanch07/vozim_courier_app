@@ -40,8 +40,13 @@ struct DeliveryItem: View {
                     }
                 }
             }
-            if isFirst{
-                StartT0WorkButton(isStarted: false,id: data.id,receipt: data)
+            if data.isArrived || data.isProgress{
+                NavigatorButton()
+            }
+            else if isFirst{
+                StartT0WorkButton(
+                    id: data.id,
+                    receipt: data)
             }else{
                 InfoChips(data: data)
             }

@@ -22,7 +22,7 @@ struct AllCargosScreen: View {
                     Spacer()
                 }else{
                     List(Array(vm.listCargos.enumerated()), id: \.offset) { index, element in
-                        DeliveryItem(data: element, isFirst: false)
+                        DeliveryItem(data: element,isFirst: false)
                             .id(element.id)
                             .padding(.vertical,8)
                     }

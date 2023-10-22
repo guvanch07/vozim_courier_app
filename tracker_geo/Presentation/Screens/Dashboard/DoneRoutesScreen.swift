@@ -22,7 +22,7 @@ struct DoneRoutesScreen: View {
                     Spacer()
                 }else{
                     List(vm.listReceipts,id: \.id) {
-                        DeliveryItem(data: $0, isFirst: false)
+                        DeliveryItem(data: $0,isFirst: false)
                             .id($0.id)
                             .padding(.vertical,8)
                     }

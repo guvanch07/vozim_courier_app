@@ -25,7 +25,7 @@ struct DeliveryListWidget: View {
                         NavigationLink {
                             DeliveryDetailScreen(receipt: element, id: element.id)
                         } label: {
-                            DeliveryItem(data: element, isFirst: index == 0)
+                            DeliveryItem(data: element,isFirst: (index - (vm.listReceipts.filter({$0.isProgress}).count)) == 0)
                                 .id(element.id)
                                 .padding(.vertical,8)
                         }

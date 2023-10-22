@@ -53,7 +53,7 @@ import os
                     self.updatesStarted = true
                     let updates = CLLocationUpdate.liveUpdates()
                     for try await update in updates {
-                        if !self.updatesStarted { break }  // End location updates by breaking out of the loop.
+                        if !self.updatesStarted { break }
                         if let loc = update.location {
                             self.lastLocation = loc
                             self.isStationary = update.isStationary

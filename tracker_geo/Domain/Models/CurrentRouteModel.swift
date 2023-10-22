@@ -101,13 +101,19 @@ struct Receipt: Decodable {
         get{return pointType != 3 && pointType != 1}
     }
     var isStart: Bool {
-        get{return status != 5}
+        get{return status == 0}
     }
     var isArrived: Bool {
-        get{return status != 6}
+        get{return status == 6}
     }
     var isComplete: Bool {
-        get{return status != 4}
+        get{return status == 4}
+    }
+    var isProgress: Bool{
+        get{return status == 5}
+    }
+    var isActive: Bool{
+        get{return status == 0}
     }
 }
 

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct StartT0WorkButton: View {
-    let isStarted: Bool
     let id: String
     let receipt:Receipt
     
@@ -17,28 +16,6 @@ struct StartT0WorkButton: View {
    
     
     var body: some View {
-        if  isStarted {
-            Button(
-                action: {
-                    print(UserDefaults.standard.string(forKey: "token") ?? "")
-                }, label: {
-                    HStack(spacing: 5){
-                        Text("Открыть в навигаторе")
-                            .foregroundStyle(appAccentColor)
-                        Image(systemName: "arrow.right")
-                            .foregroundColor(appAccentColor)
-                    }.padding(.horizontal,20)
-                        .padding(.vertical,7)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(appAccentColor, lineWidth: 1)
-                        )
-                }
-            )
-            .onTapGesture {
-                print(UserDefaults.standard.string(forKey: "token") ?? "")
-            }
-        }else{
             NavigationStack(){
                 Button(
                     action: {
@@ -72,7 +49,6 @@ struct StartT0WorkButton: View {
                 }
             }
         }
-    }
 }
 
 
