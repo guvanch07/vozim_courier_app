@@ -20,19 +20,17 @@ struct ChipWidget: View {
                     .font(.title2)
                     .frame(width: 14.0, height: 14.0)
             }
-            Text(titleKey).font(.system(size: 14))
+            Text(titleKey).font(.system(size: 14)).foregroundStyle(.black)
         }
         .padding(.vertical, 5)
-        .padding(.leading, 8)
-        .padding(.trailing, 8)
-        .foregroundColor(.black)
+        .padding(.horizontal,10)
         .background(color ?? Color(hex: 0xFFF5F5F5))
         .cornerRadius(20)
-        .overlay(
-            RoundedRectangle(cornerRadius: 20)
-                .stroke( lineWidth: 0.1)
-            
-        )
+//        .overlay(
+//            RoundedRectangle(cornerRadius: 20)
+//                .stroke( lineWidth: 0.001)
+//            
+//        )
         
     }
 }

@@ -13,9 +13,12 @@ struct AppListTile: View {
     var subtitle:String?
     var view: AnyView?
     var replace: Bool = false
+    var size: (Double,Double) = (24,24)
     var body: some View {
         HStack{
-            Image(systemName: image)
+            Image(image)
+                .resizable()
+                .frame(width: size.0,height: size.1)
             Spacer().frame(width: 16)
             VStack(
                 alignment: .leading

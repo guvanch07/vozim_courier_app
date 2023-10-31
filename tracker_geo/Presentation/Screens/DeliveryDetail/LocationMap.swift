@@ -30,7 +30,6 @@ struct LocationMap: View {
                     MapPitchToggle()
                     MapUserLocationButton()
                     MapCompass()
-                    
                 }
         
     }

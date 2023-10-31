@@ -59,8 +59,12 @@ struct MainDetailWidget: View {
             return receipt.isPickUp ? "Принимаю груз" : "Выдаю груз"
         }
     }
+    @available(iOS 17.0, *)
     private func startAction() async -> TaskStatus{
-        if await vm.startToWork(id: receipt.id)?.success ?? false {
+        @ObservedObject var locationsHandler = LocationsHandler.shared
+        
+        let geo = GeoModel(lat:locationsHandler.lastLocation.coordinate.latitude, lng: locationsHandler.lastLocation.coordinate.longitude)
+        if await vm.startToWork(id: receipt.id,geo: geo)?.success ?? false {
             return .success
         }else{
             return .faild(vm.startToWorkSucces?.message ?? "fix")

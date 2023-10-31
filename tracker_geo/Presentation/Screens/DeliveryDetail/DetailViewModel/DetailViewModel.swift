@@ -16,12 +16,13 @@ final class DetailViewModel: ObservableObject{
     @Published var startToWorkSucces: SuccesResponse?
     @Published var arrivedDataSucces: SuccesResponse?
     
+    
     private let startToWorkUseCase = StartToWorkUseCase()
     private let arrivedAddress = ArrivedToAddressUseCase()
     
-    func startToWork(id:String) async -> SuccesResponse? {
+    func startToWork(id:String,geo:GeoModel) async -> SuccesResponse? {
         do {
-            let data = RouteWorkRequest(receipt: id, geo: GeoModel(lat: 23, lng: 43))
+            let data = RouteWorkRequest(receipt: id, geo: geo)
             let usecase = try await startToWorkUseCase.execute(startToWorkRequest: data)
             print(usecase)
             DispatchQueue.main.async{

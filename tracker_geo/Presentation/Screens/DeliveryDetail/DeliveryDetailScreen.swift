@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct DeliveryDetailScreen: View {
-    
     let receipt: Receipt
     let id:String
+    @State private var isModalPresented = false
     
     var body: some View {
         
@@ -23,7 +23,9 @@ struct DeliveryDetailScreen: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Image(systemName: "info.circle")
                         .onTapGesture {
-                            print("\(receipt.id)")
+                            isModalPresented = true
+                        }.sheet(isPresented: $isModalPresented) {
+                            EmptyView()
                         }
                 }
             }
