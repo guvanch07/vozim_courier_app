@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct InfoDeliverWidget: View {
+    let isDone: Bool
     let receipt: Receipt
     var body: some View {
+        
         List {
             AppListTile(
                 image: "barcode",

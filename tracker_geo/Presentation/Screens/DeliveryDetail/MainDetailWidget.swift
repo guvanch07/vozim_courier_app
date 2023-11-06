@@ -8,49 +8,62 @@
 import SwiftUI
 
 struct MainDetailWidget: View {
+    let isDone: Bool
     let receipt: Receipt
     @State private var tab = "Информация"
     @StateObject private var vm = DetailViewModel()
-    var colors = ["Информация", "Карта"]
+    var infoTabs = ["Информация", "Карта"]
     var body: some View {
         VStack{
-            if vm.startToWorkSucces?.success ?? false{
-                EventTile(title: "Бесплатное ожидание 14:59")
-            }
             Picker("Where", selection: $tab) {
-                ForEach(colors, id: \.self) {
+                ForEach(infoTabs, id: \.self) {
                     Text($0)
                 }
             }.pickerStyle(.segmented)
                 .padding([.top,.trailing,.leading],15)
                 .background(Color(uiColor: .systemGroupedBackground))
                 .controlSize(.large)
-            TabDetailItem(receipt: receipt, tab: tab)
+            
+            if (isDone){
+                EventTile(
+                    title: "Выполнено",
+                    image: "checkmark.circle",
+                    foregroundColor: .green).padding(.horizontal,15)
+            }else if vm.startToWorkSucces?.success ?? false{
+                EventTile(
+                    title: "Бесплатное ожидание 14:59",
+                    image: "info.circle",
+                    foregroundColor: .teal).padding(.horizontal,15)
+            }
+            
+            TabDetailItem(receipt: receipt,isDone: isDone, tab: tab)
             if #available(iOS 17.0, *) {
-                AnimatedButton {
-                    HStack{
-                        Spacer()
-                        Text(actionButtonText())
-                        Spacer()
+                if !isDone {
+                    AnimatedButton {
+                        HStack{
+                            Spacer()
+                            Text(actionButtonText())
+                            Spacer()
+                        }
+                        .foregroundColor(.black)
+                    } action: {
+                        if receipt.isStart{
+                            return await startAction()
+                        }else if(receipt.isArrived || vm.startToWorkSucces?.success ?? false){
+                            return await arrivedAction()
+                        }else{
+                            return pickUpAction()
+                        }
                     }
-                    .foregroundColor(.black)
-                } action: {
-                    if receipt.isStart{
-                        return await startAction()
-                    }else if(receipt.isArrived || vm.startToWorkSucces?.success ?? false){
-                        return await arrivedAction()
-                    }else{
-                        return pickUpAction()
-                    }
+                    .padding(.horizontal, 15)
+                    .padding(.bottom,7)
                 }
-                .padding(.horizontal, 15)
-                .padding(.bottom,7)
             }
         }
     }
     func actionButtonText() -> String {
         if receipt.isStart || vm.startToWorkSucces?.success ?? false {
-            return tab == colors[0] ? "Начать" : "Открыть в навигаторе"
+            return tab == infoTabs[0] ? "Начать" : "Открыть в навигаторе"
         }else if(receipt.isArrived || vm.startToWorkSucces?.success ?? false){
             return "Я приехал"
         }else if(vm.arrivedDataSucces?.success ?? false){
@@ -84,6 +97,7 @@ struct MainDetailWidget: View {
                 Text("Destination")
             }
         }
+        print(receipt.id)
         return .success
     }
 }
@@ -92,11 +106,12 @@ struct MainDetailWidget: View {
 
 struct TabDetailItem: View {
     let receipt: Receipt
+    let isDone: Bool
     let tab: String
     var body: some View {
         switch tab {
         case "Информация":
-            InfoDeliverWidget(receipt: receipt)
+            InfoDeliverWidget(isDone: isDone,receipt: receipt)
         case "Карта":
             if #available(iOS 17.0, *) {
                 LocationMap(receipt: receipt)

@@ -9,28 +9,26 @@ import SwiftUI
 
 struct EventTile: View {
     let title: String
-    let stripeHeight = 15.0
+    let image: String
+    let foregroundColor: Color
     var body: some View {
-        HStack(alignment: .firstTextBaseline) {
-            Image(systemName: "info.circle")
+        HStack(alignment: .center) {
+            Image(systemName: image)
                 .font(.title)
+                .foregroundStyle(.white)
             Text(title)
+                .foregroundStyle(.white)
+            Spacer()
         }
-        .padding()
-        .padding(.top, stripeHeight)
+        .padding(.vertical,5)
+        .padding(.horizontal,10)
         .background {
             ZStack(alignment: .top) {
                 Rectangle()
-                    .opacity(0.3)
-                Rectangle()
-                    .frame(maxHeight: stripeHeight)
             }
-            .foregroundColor(.teal)
+            .foregroundColor(foregroundColor)
         }
-        .clipShape(RoundedRectangle(cornerRadius: stripeHeight, style: .continuous))
+        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
 }
 
-#Preview {
-    EventTile(title: "")
-}

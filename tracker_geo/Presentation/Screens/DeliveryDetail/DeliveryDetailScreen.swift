@@ -10,11 +10,12 @@ import SwiftUI
 struct DeliveryDetailScreen: View {
     let receipt: Receipt
     let id:String
+    let isDone: Bool
     @State private var isModalPresented = false
     
     var body: some View {
         
-        MainDetailWidget(receipt: receipt)
+        MainDetailWidget(isDone: isDone,receipt: receipt)
             .background(Color(uiColor: .systemGroupedBackground))
             .controlSize(.large)
             .navigationTitle(receipt.address.street)
@@ -25,7 +26,7 @@ struct DeliveryDetailScreen: View {
                         .onTapGesture {
                             isModalPresented = true
                         }.sheet(isPresented: $isModalPresented) {
-                            EmptyView()
+                            RefuseCargoScreen()
                         }
                 }
             }

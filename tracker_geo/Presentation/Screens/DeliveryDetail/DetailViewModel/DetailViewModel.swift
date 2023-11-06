@@ -16,7 +16,6 @@ final class DetailViewModel: ObservableObject{
     @Published var startToWorkSucces: SuccesResponse?
     @Published var arrivedDataSucces: SuccesResponse?
     
-    
     private let startToWorkUseCase = StartToWorkUseCase()
     private let arrivedAddress = ArrivedToAddressUseCase()
     
@@ -42,9 +41,9 @@ final class DetailViewModel: ObservableObject{
     
     func arrivedToAddress(id:String) async -> SuccesResponse? {
         do {
-            let data = RouteWorkRequest(receipt: id, geo: GeoModel(lat: 32.323, lng: 34.434))
+            let data = RouteWorkRequest(receipt: id, geo: GeoModel(lat: 37.72786299, lng: -122.40641700))
             let usecase = try await arrivedAddress.execute(arrivedRequest: data)
-            print(usecase)
+            print(id)
             DispatchQueue.main.async{
                 self.arrivedDataSucces = usecase
             }

@@ -21,10 +21,14 @@ struct DoneRoutesScreen: View {
                     Text("NO ROUTES")
                     Spacer()
                 }else{
-                    List(vm.listReceipts,id: \.id) {
-                        DeliveryItem(data: $0,isFirst: false,itemType: .done)
-                            .id($0.id)
-                            .padding(.vertical,8)
+                    List(vm.listReceipts, id: \.id) { element in
+                        NavigationLink {
+                            DeliveryDetailScreen(receipt: element, id: element.id,isDone: true)
+                        } label: {
+                            DeliveryItem(data: element,isFirst: false,itemType: .done)
+                                .id(element.id)
+                                .padding(.vertical,8)
+                        }
                     }
                 }
             }
