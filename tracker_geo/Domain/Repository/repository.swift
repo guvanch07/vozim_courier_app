@@ -15,4 +15,5 @@ protocol IRepository {
     func arriveToAddress(arrive: RouteWorkRequest) async throws -> SuccesResponse
     func geoTrack(geo: GeoTrackRequest) async throws -> SuccesResponse
     func getAllCargo() async throws -> AllCargoResponse
+    func refuseCargo(request: RefuseDataRequest) async throws -> SuccesResponse
 }

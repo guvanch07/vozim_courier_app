@@ -38,7 +38,6 @@ struct RefuseCargoScreen: View {
                     .toggleStyle(CheckboxStyle())
                     .padding(.all,15)
             }
-            
             Spacer()
             if #available(iOS 17.0, *) {
                 AnimatedButton(
@@ -51,15 +50,18 @@ struct RefuseCargoScreen: View {
                         .foregroundColor(.white)
                     },
                     action: {
+                    //let req = RefuseCargoUseCase()
+                        
                         return .success
                     }, buttonTint: Color(hex: 0xffF44336)
                 )
                 .padding(.horizontal, 15)
                 .padding(.bottom,7)
             }
-        }
-        .onTapGesture {
+        }.onTapGesture {
+            print("tap")
             hideKeyboard()
+            
         }
     }
 }
