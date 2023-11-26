@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SuccesResponse: Decodable {
+struct SuccesResponse: Codable {
     let success: Bool?
     let message: String?
 }

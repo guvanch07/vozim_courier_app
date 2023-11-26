@@ -71,6 +71,7 @@ final class RepositoryImpl: IRepository{
     }
     
     func refuseCargo(request: RefuseDataRequest) async throws -> SuccesResponse {
+        print(try request.toJson())
         let response = try await apiService.post(
             endPoint: "\(baseUrl)courier/refuse",
             data: request.toJson(),

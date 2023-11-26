@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RouteWorkRequest: Decodable {
+struct RouteWorkRequest: Codable {
     let receipt: String
     let geo: GeoModel
 }
@@ -25,7 +25,7 @@ extension RouteWorkRequest{
     }
 }
 
-struct GeoModel: Decodable{
+struct GeoModel: Codable{
     let lat: Double
     let lng:Double
 }

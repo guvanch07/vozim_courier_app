@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - CurrentResponseModel
-struct CurrentResponseModel: Decodable {
+struct CurrentResponseModel: Codable {
     let id, number, date: String
     let isOpen: Bool
     let confirmations: Confirmations
@@ -28,7 +28,7 @@ struct CurrentResponseModel: Decodable {
 }
 
 // MARK: - App
-struct AppVersion: Decodable {
+struct AppVersion: Codable {
     let androidVersion, iosVersion: String
 
     enum CodingKeys: String, CodingKey {
@@ -38,7 +38,7 @@ struct AppVersion: Decodable {
 }
 
 // MARK: - Confirmations
-struct Confirmations: Decodable {
+struct Confirmations: Codable {
     let start, confirmationsReturn, refuse, reception: Bool
 
     enum CodingKeys: String, CodingKey {
@@ -49,12 +49,12 @@ struct Confirmations: Decodable {
 }
 
 // MARK: - Logist
-struct Logist: Decodable {
+struct Logist: Codable {
     let name, phone: String
 }
 
 // MARK: - Receipt
-struct Receipt: Decodable {
+struct Receipt: Codable {
     let id, series, number, goodName: String
     let additional: String
     let goodCount, pointType, status, reaction: Int
@@ -118,13 +118,13 @@ struct Receipt: Decodable {
 }
 
 // MARK: - Address
-struct Address: Decodable {
+struct Address: Codable {
     let street: String
     let lat, lng: Double
 }
 
 // MARK: - CityDelivery
-struct CityDelivery: Decodable {
+struct CityDelivery: Codable {
     let receiveID, deliveryID: String
 
     enum CodingKeys: String, CodingKey {
@@ -134,7 +134,7 @@ struct CityDelivery: Decodable {
 }
 
 // MARK: - Client
-struct Client: Decodable {
+struct Client: Codable {
     let name: String
     let isCompany: Bool
     let phone: String
@@ -147,12 +147,12 @@ struct Client: Decodable {
 }
 
 // MARK: - DeliveryTime
-struct DeliveryTime: Decodable {
+struct DeliveryTime: Codable {
     let from, to: String
 }
 
 // MARK: - Receiver
-struct Receiver: Decodable {
+struct Receiver: Codable {
     let name, companyName, phone, additional: String
     let address: Address
     let timeFrom, timeTo: String
@@ -169,7 +169,7 @@ struct Receiver: Decodable {
 }
 
 // MARK: - Services
-struct Services: Decodable {
+struct Services: Codable {
     let before18, driverHelp: Before18
     let loader: Loader
 
@@ -181,24 +181,24 @@ struct Services: Decodable {
 }
 
 // MARK: - Before18
-struct Before18: Decodable {
+struct Before18: Codable {
     let enabled: Bool
 }
 
 // MARK: - Loader
-struct Loader: Decodable {
+struct Loader: Codable {
     let enabled: Bool
     let count: Int
 }
 
 // MARK: - Size
-struct Size: Identifiable, Decodable {
+struct Size: Identifiable, Codable {
     var id:UUID?
     let w, h, l, kg: Int
 }
 
 // MARK: - Stats
-struct Stats: Decodable {
+struct Stats: Codable {
     let receiveCount, deliveryCount, km: Int
     let dateOpened: String
 

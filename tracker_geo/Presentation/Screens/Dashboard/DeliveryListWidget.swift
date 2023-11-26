@@ -23,7 +23,7 @@ struct DeliveryListWidget: View {
                 }else{
                     List(Array(vm.listReceipts.enumerated()), id: \.offset) { index, element in
                         NavigationLink {
-                            DeliveryDetailScreen(receipt: element, id: element.id,isDone: false)
+                            DeliveryDetailScreen(receipt: element, isDone: false)
                         } label: {
                             DeliveryItem(data: element,isFirst: (index - (vm.listReceipts.filter({$0.isProgress}).count)) == 0,itemType: .current)
                                 .id(element.id)

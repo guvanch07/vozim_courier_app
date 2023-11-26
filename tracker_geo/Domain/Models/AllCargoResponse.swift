@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct AllCargoResponse: Decodable{
+struct AllCargoResponse: Codable{
     let receipts: [Receipt]
 }

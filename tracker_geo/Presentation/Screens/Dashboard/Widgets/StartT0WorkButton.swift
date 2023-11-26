@@ -45,7 +45,7 @@ struct StartT0WorkButton: View {
                     }
                 }
             }.navigationDestination(isPresented: $isPresented) {
-                DeliveryDetailScreen(receipt: receipt, id: receipt.id, isDone: false)
+                DeliveryDetailScreen(receipt: receipt, isDone: false)
             }
         }
     }

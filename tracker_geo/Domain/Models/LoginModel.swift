@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct LoginResponse:Decodable{
+struct LoginResponse:Codable{
         let success: Bool
         let token: String
         let fio: String?
@@ -16,17 +16,18 @@ struct LoginResponse:Decodable{
         let message: String?
 }
 
-struct LoginRequest:Decodable{
+
+
+struct LoginRequest:Codable{
         let phone: String
         let password: String
-}
+    
+    enum CodingKeys: String, CodingKey {
+        case phone
+        case password
+    }
 
-extension LoginRequest{
-    func toJson() -> Data?{
-        let json: [String: Any?] =  ["phone":self.phone,
-                                     "password": self.password
-        ]
-        
-        return try? JSONSerialization.data(withJSONObject: json)
+    func toJson() throws -> Data {
+        return try JSONEncoder().encode(self)
     }
 }

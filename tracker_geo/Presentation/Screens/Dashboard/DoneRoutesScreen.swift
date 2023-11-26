@@ -23,7 +23,7 @@ struct DoneRoutesScreen: View {
                 }else{
                     List(vm.listReceipts, id: \.id) { element in
                         NavigationLink {
-                            DeliveryDetailScreen(receipt: element, id: element.id,isDone: true)
+                            DeliveryDetailScreen(receipt: element,isDone: true)
                         } label: {
                             DeliveryItem(data: element,isFirst: false,itemType: .done)
                                 .id(element.id)

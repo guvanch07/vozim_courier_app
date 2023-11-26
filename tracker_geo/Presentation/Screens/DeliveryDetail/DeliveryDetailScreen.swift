@@ -9,7 +9,6 @@ import SwiftUI
 
 struct DeliveryDetailScreen: View {
     let receipt: Receipt
-    let id:String
     let isDone: Bool
     @State private var isModalPresented = false
     
@@ -26,7 +25,7 @@ struct DeliveryDetailScreen: View {
                         .onTapGesture {
                             isModalPresented = true
                         }.sheet(isPresented: $isModalPresented) {
-                            RefuseCargoScreen()
+                            RefuseCargoScreen(receipt: receipt)
                         }
                 }
             }

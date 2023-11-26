@@ -9,7 +9,7 @@ import Foundation
 
 
 
-struct PostModel:Decodable{
+struct PostModel:Codable{
         let userId: Int
         let id: Int?
         let title: String?
@@ -17,7 +17,7 @@ struct PostModel:Decodable{
     
 }
 
-struct PostResponse : Decodable {
+struct PostResponse : Codable {
     let results: [PostModel]
 }
 

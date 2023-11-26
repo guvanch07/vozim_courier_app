@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct RefuseCargoScreen: View {
+    let receipt: Receipt
+    
     @State private var selection = "Red"
     let colors = ["Red", "Green", "Blue", "Black", "Tartan"]
     @State var address = ""
     @State var doesClose = false
+    
     var body: some View {
         VStack(alignment: .leading)
         {
@@ -50,8 +53,17 @@ struct RefuseCargoScreen: View {
                         .foregroundColor(.white)
                     },
                     action: {
-                    //let req = RefuseCargoUseCase()
-                        
+                        let usecase = RefuseCargoUseCase()
+                        let req = RefuseDataRequest(receipt: receipt.id,
+                                                    reason: "отмена клиентом",
+                                                    ourFault: true,
+                                                    expenses: Expenses(paidEntry: 0,
+                                                                       unexpected: 0),
+                                                    geo: Geo(id: 1, lat: 57.23, lng: 32.342))
+                        Task{
+                            let res = try await usecase.execute(request: req)
+                            print(res.message ?? "")
+                        }
                         return .success
                     }, buttonTint: Color(hex: 0xffF44336)
                 )
@@ -66,9 +78,6 @@ struct RefuseCargoScreen: View {
     }
 }
 
-#Preview {
-    RefuseCargoScreen()
-}
 
 
 struct CustomDropDown: View {

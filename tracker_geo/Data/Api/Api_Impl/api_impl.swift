@@ -15,7 +15,7 @@ class ApiService{
     let token = UserDefaults.standard.string(forKey: "token")
     let logger = Logger(subsystem: "com.apple.tracker_geo", category: "Api_Impl")
     
-    func get<T:Decodable>(endPoint:String, type: T.Type) async throws -> T {
+    func get<T:Codable>(endPoint:String, type: T.Type) async throws -> T {
         
         guard let url = URL(string: endPoint) else {
             print("error in url")
@@ -29,9 +29,12 @@ class ApiService{
         request.httpMethod = "GET"
         let (data,response) = try await URLSession.shared.data(for: request)
         
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+        let httpResponse = response as? HTTPURLResponse
+        
+        guard httpResponse?.statusCode == 200 else {
             
-            switch (response as? HTTPURLResponse)?.statusCode {
+            logger.error("\(httpResponse?.statusCode ?? 0)")
+            switch httpResponse?.statusCode {
             case 400:
                 throw UserError.badUrl
             case 401:
@@ -57,7 +60,7 @@ class ApiService{
         }
     }
     
-    func post<T:Decodable>(endPoint:String,data:Data?,type: T.Type) async throws -> T {
+    func post<T:Codable>(endPoint:String,data:Data?,type: T.Type) async throws -> T {
         
         guard let url = URL(string: endPoint) else {
             print("error in url")
@@ -74,10 +77,12 @@ class ApiService{
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
             let (data, response) = try await URLSession.shared.data(for: request)
-            logger.info("\(data)")
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                logger.info("\(response as? HTTPURLResponse)?.statusCode)")
-                switch (response as? HTTPURLResponse)?.statusCode {
+            
+            let httpResponse = response as? HTTPURLResponse
+            
+            guard httpResponse?.statusCode == 200 else {
+                logger.error("\(httpResponse?.statusCode ?? 0)")
+                switch httpResponse?.statusCode {
                 case 400:
                     throw UserError.badUrl
                 case 401:
